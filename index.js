@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 //connect to db
 mongoose.connect(
-    'mongodb+srv://sarathdev:sarathdev@cluster0-b1mvc.mongodb.net/test?retryWrites=true&w=majority',
+    'mongodb+srv://admin:akkzBTYu9Ir4p9nF@pets-app-kyhbw.mongodb.net/test?retryWrites=true&w=majority',
     { useUnifiedTopology: true },
     ()=>console.log("Connected to db")
     );
@@ -15,6 +15,14 @@ const postRoute = require('./routes/posts');
 
 //Middleware
 app.use(express.json());
+
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 
 //Route Middleware
 app.use('/api/user', authRoute);
